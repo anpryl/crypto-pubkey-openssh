@@ -23,7 +23,7 @@ import qualified Crypto.PubKey.RSA as RSA
 import Crypto.PubKey.OpenSsh.Types (OpenSshKeyType(..), OpenSshPublicKey(..),
                                     OpenSshPrivateKey(..))
 
-readType :: Monad m => ByteString -> m OpenSshKeyType
+readType :: MonadFail m => ByteString -> m OpenSshKeyType
 readType "ssh-rsa" = return OpenSshKeyTypeRsa
 readType "ssh-dss" = return OpenSshKeyTypeDsa
 readType _ = fail "Invalid key type"
